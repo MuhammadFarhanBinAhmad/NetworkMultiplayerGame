@@ -58,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -126,11 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d25cc1b0e2df31449604b1cf3d0db77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starting_Movement_Speed: 2
   move_Speed: 2
-  jump_Force: 1
-  current_total_Player_Health: 100
   health_Bar: {fileID: 0}
-  being_Hit: 0
   currently_Moving: 0
 --- !u!1 &7854014379782029143
 GameObject:

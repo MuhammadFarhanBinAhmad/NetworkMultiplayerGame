@@ -19,15 +19,18 @@ public class ThirdPersonCamera : MonoBehaviour
             offset = target.position - transform.position;
         }
 
-        pivot.transform.position = target.transform.position;
+        Vector3 vec = new Vector3(target.position.x, target.position.y + 1, target.position.z);
+
+        pivot.transform.position = vec;
         pivot.transform.parent = target.transform;
 
         Cursor.lockState = CursorLockMode.Locked;//lock mouse to center and hide mouse cursor
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
+
         if (target != null)
         {
             //get x position of the mouse & rotate the target
@@ -55,6 +58,7 @@ public class ThirdPersonCamera : MonoBehaviour
             float desiredXangle = pivot.eulerAngles.x;
 
             Quaternion rotation = Quaternion.Euler(desiredXangle, desiredYangle, 0);
+
             transform.position = target.position - (rotation * offset);
 
             //stop camera from going under player

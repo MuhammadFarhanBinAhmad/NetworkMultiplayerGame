@@ -5,4 +5,8 @@ using UnityEngine;
 public class InteractableObjects : MonoBehaviour
 {
 
+    public float time_To_Completion;
+
+    public bool activated;
+
 }
