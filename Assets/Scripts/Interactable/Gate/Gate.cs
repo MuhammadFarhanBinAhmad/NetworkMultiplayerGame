@@ -7,6 +7,8 @@ public class Gate : InteractableObjects
 
     public bool unlocked;
 
+    public GameObject gate_Light;
+
     // Start is called before the first frame update
     void Start()
     {

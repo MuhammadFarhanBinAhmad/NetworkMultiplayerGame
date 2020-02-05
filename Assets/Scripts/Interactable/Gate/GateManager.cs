@@ -23,6 +23,7 @@ public class GateManager : MonoBehaviour
             {
                 int no = Random.Range(0, gates.Count);
                 gates[no].unlocked = true;
+                gates[no].gate_Light.SetActive(true);
                 gates.Remove(gates[no]);
             }
         }

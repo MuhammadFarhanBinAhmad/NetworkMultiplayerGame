@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
+        float crouch = Input.GetAxis("Crouch");
 
         moveDirection = (transform.forward * vertical * move_Speed) + (transform.right * horizontal * move_Speed);//move in correlation with the directin of the camera & enable player to strafe
         moveDirection = moveDirection.normalized * move_Speed;
@@ -93,9 +94,23 @@ public class PlayerMovement : MonoBehaviour
                     move_Speed = starting_Movement_Speed / 2;
                 }
                 else
-
                 {
                     player_Anim.SetBool("Injured", false);
+                    move_Speed = starting_Movement_Speed;
+                }
+
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    player_Anim.SetFloat("Crouch", crouch);
+                    GetComponent<CharacterController>().height = 1;
+                    GetComponent<CharacterController>().center = new Vector3(0, .45f, 0);
+                    move_Speed = starting_Movement_Speed/2;
+                }
+                else
+                {
+                    player_Anim.SetFloat("Crouch", crouch);
+                    GetComponent<CharacterController>().height = 1.7f;
+                    GetComponent<CharacterController>().center = new Vector3(0, .85f, 0);
                     move_Speed = starting_Movement_Speed;
                 }
                 break;

@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
 
     public bool is_Hurt;
+    bool test;
 
     PlayerMovement the_Player_Movement;
 
@@ -23,18 +24,22 @@ public class PlayerManager : MonoBehaviour
 
         if (Physics.Raycast(pivot, foward, out hit,3))
         {
-            if (Input.GetMouseButton(0))
+            if (hit.collider.GetComponent<InteractableObjects>() != null)
             {
-                if (hit.collider.GetComponent<InteractableObjects>() != null)
+                if (Input.GetMouseButton(0))
                 {
-                    if (hit.collider.GetComponent<InteractableObjects>().activated == false)
-                    {
-                        hit.collider.GetComponent<InteractableObjects>().time_To_Completion--;
-                    }
+                   if (hit.collider.GetComponent<InteractableObjects>().activated == false)
+                   {
+                     hit.collider.GetComponent<InteractableObjects>().time_To_Completion--;
+                     hit.collider.GetComponent<InteractableObjects>().activating = true;
+                   }
+                }
+                else
+                {
+                    hit.collider.GetComponent<InteractableObjects>().activating = false;
                 }
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
