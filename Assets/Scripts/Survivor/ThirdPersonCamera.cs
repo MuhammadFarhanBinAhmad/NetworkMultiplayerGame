@@ -36,7 +36,10 @@ public class ThirdPersonCamera : MonoBehaviour
             //get x position of the mouse & rotate the target
             //---rotate camera horizontal
             float horizontal = Input.GetAxis("Mouse X") * rotate_Speed;
-            target.Rotate(0, horizontal, 0);
+            if (!GetComponentInParent<PlayerManager>().fixing)
+            {
+                target.Rotate(0, horizontal, 0);
+            }
             //get y pos of mouse & rotate the pivot
             //---move camera vertical
             float vertical = Input.GetAxis("Mouse Y") * rotate_Speed;

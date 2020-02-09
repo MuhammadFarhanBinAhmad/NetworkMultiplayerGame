@@ -7,12 +7,12 @@ public class GateManager : MonoBehaviour
 
     public int generator_Needed;
 
-    public List<Gate> gates = new List<Gate>();
+    public List<GateLever> gates = new List<GateLever>();
 
     // Start is called before the first frame update
     void Start()
     {
-        gates.AddRange(GameObject.FindObjectsOfType<Gate>());//placing all enemy in list
+        gates.AddRange(GameObject.FindObjectsOfType<GateLever>());//placing all enemy in list
     }
 
     public void OpenGate()

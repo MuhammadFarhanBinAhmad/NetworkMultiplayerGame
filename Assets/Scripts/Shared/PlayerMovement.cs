@@ -39,34 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*//PlayerMovement
-        float Ystore = moveDirection.y;//store whatever y direction player currently in
-
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        moveDirection = (transform.forward * vertical * move_Speed) + (transform.right * horizontal * move_Speed);//move in correlation with the directin of the camera & enable player to strafe
-        moveDirection = moveDirection.normalized * move_Speed;
-
-        theCC.Move(moveDirection * Time.deltaTime);//enable player to move in the world
-
-        player_Anim.SetFloat("Running", vertical);
-        player_Anim.SetFloat("Strafing", horizontal);
-
-
-        if (GetComponent<PlayerManager>().is_Hurt)
-        {
-            player_Anim.SetBool("Injured", true);
-            move_Speed = starting_Movement_Speed / 2;
-        }
-        else
-
-        {
-            player_Anim.SetBool("Injured", false);
-            move_Speed = starting_Movement_Speed;
-        }*/
         PlayerMovementControl();
-
     }
     void PlayerMovementControl()
     {
@@ -84,6 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
         player_Anim.SetFloat("Running", vertical);
         player_Anim.SetFloat("Strafing", horizontal);
+
+
+        if (!theCC.isGrounded)
+        {
+            float gravity = 9.81f;
+
+            theCC.Move(-transform.up * gravity * Time.deltaTime);
+        }
+
 
         switch (the_Current_Character)
         {

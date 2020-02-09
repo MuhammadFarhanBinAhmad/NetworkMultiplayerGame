@@ -6,10 +6,10 @@ public class PlayerManager : MonoBehaviour
 {
 
     public bool is_Hurt;
-    bool test;
+    public bool fixing;
+
 
     PlayerMovement the_Player_Movement;
-
     private void Start()
     {
         the_Player_Movement = GetComponent<PlayerMovement>();
@@ -30,13 +30,31 @@ public class PlayerManager : MonoBehaviour
                 {
                    if (hit.collider.GetComponent<InteractableObjects>().activated == false)
                    {
-                     hit.collider.GetComponent<InteractableObjects>().time_To_Completion--;
-                     hit.collider.GetComponent<InteractableObjects>().activating = true;
+                        hit.collider.GetComponent<InteractableObjects>().time_To_Completion--;
+                        hit.collider.GetComponent<InteractableObjects>().activating = true;
+                        GetComponent<Animator>().SetBool("Fixing", true);
+                        fixing = true;
+                        GetComponent<PlayerMovement>().move_Speed = 0;
                    }
+                   else if (hit.collider.GetComponent<InteractableObjects>().activated == true)
+                   {
+                        GetComponent<Animator>().SetBool("Fixing", false);
+                        fixing = true;
+                    }
                 }
                 else
                 {
                     hit.collider.GetComponent<InteractableObjects>().activating = false;
+                    fixing = false;
+                    GetComponent<Animator>().SetBool("Fixing", false);
+                    if (!is_Hurt)
+                    {
+                        GetComponent<PlayerMovement>().move_Speed = GetComponent<PlayerMovement>().starting_Movement_Speed;
+                    }
+                    else
+                    {
+                        GetComponent<PlayerMovement>().move_Speed = GetComponent<PlayerMovement>().starting_Movement_Speed/2;
+                    }
                 }
             }
         }
