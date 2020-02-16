@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -8,14 +6,13 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public bool is_Hurt;
     [HideInInspector] public bool is_Down;
     [HideInInspector] public bool fixing;
+    [HideInInspector] public bool escape;
 
     public float starting_Revive_Time;
     public float revive_Time;
 
-    PlayerMovement the_Player_Movement;
     private void Start()
     {
-        the_Player_Movement = GetComponent<PlayerMovement>();
         revive_Time=starting_Revive_Time;
     }
 
@@ -63,7 +60,6 @@ public class PlayerManager : MonoBehaviour
             }
             if (hit.collider.GetComponent<PlayerManager>() != null)
             {
-                print(hit.collider.name);
                 if (Input.GetMouseButton(0))
                 {
                     if (hit.collider.GetComponent<PlayerManager>().is_Down == true)
@@ -91,7 +87,7 @@ public class PlayerManager : MonoBehaviour
         is_Down = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.name == "KillerWeapon")
         {
@@ -108,5 +104,5 @@ public class PlayerManager : MonoBehaviour
         {
             the_Player_Movement.move_Speed = the_Player_Movement.starting_Movement_Speed;
         }
-    }
+    }*/
 }

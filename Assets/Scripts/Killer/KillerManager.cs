@@ -5,17 +5,22 @@ using UnityEngine;
 public class KillerManager : MonoBehaviour
 {
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        RaycastHit hit;
+        Vector3 pivot = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+
+
+        if (Physics.Raycast(pivot, transform.forward, out hit, 3))
+        {
+            if (hit.collider.GetComponent<PlayerManager>() != null)
+            {
+                if (hit.collider.GetComponent<PlayerManager>().is_Down)
+                {
+                    print("hit");
+                }
+            }
+        }
     }
 }

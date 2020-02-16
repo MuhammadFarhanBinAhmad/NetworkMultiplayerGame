@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -28,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         theCC = GetComponent<CharacterController>();
         player_Anim = GetComponent<Animator>();
-        move_Speed = starting_Movement_Speed;
+        //move_Speed = starting_Movement_Speed;
 
         //for killer
         if (player_Anim.layerCount == 2)
@@ -41,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMovementControl();
     }
+
     void PlayerMovementControl()
     {
         //PlayerMovement
@@ -74,11 +73,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     player_Anim.SetBool("Injured", true);
                     move_Speed = starting_Movement_Speed / 2;
-                }
-                else if (GetComponent<PlayerManager>().is_Down)
-                {
-                    player_Anim.SetBool("Down", true);
-                    move_Speed = starting_Movement_Speed / 4;
+                    if (GetComponent<PlayerManager>().is_Down)
+                    {
+                        player_Anim.SetBool("Down", true);
+                        move_Speed = starting_Movement_Speed / 5;
+                    }
                 }
                 else
                 {
@@ -92,20 +91,22 @@ public class PlayerMovement : MonoBehaviour
                     player_Anim.SetFloat("Crouch", crouch);
                     GetComponent<CharacterController>().height = 1;
                     GetComponent<CharacterController>().center = new Vector3(0, .45f, 0);
-                    move_Speed = starting_Movement_Speed/2;
+                    move_Speed = starting_Movement_Speed / 2;
+
                 }
                 else
                 {
                     player_Anim.SetFloat("Crouch", crouch);
                     GetComponent<CharacterController>().height = 1.7f;
                     GetComponent<CharacterController>().center = new Vector3(0, .85f, 0);
-                    move_Speed = starting_Movement_Speed;
                 }
+
                 break;
             case CurrentCharacter.Killer:
 
                 AnimatorStateInfo current_Base_State;
                 AnimatorStateInfo attack_State;
+
 
                 current_Base_State = player_Anim.GetCurrentAnimatorStateInfo(0);
 
@@ -126,3 +127,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
