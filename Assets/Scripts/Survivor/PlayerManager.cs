@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    public bool is_Hurt;
-    public bool fixing;
+    [HideInInspector] public bool is_Hurt;
+    [HideInInspector] public bool is_Down;
+    [HideInInspector] public bool fixing;
 
+    public float starting_Revive_Time;
+    public float revive_Time;
 
     PlayerMovement the_Player_Movement;
     private void Start()
     {
         the_Player_Movement = GetComponent<PlayerMovement>();
+        revive_Time=starting_Revive_Time;
     }
 
     // Update is called once per frame
@@ -57,21 +61,47 @@ public class PlayerManager : MonoBehaviour
                     }
                 }
             }
+            if (hit.collider.GetComponent<PlayerManager>() != null)
+            {
+                print(hit.collider.name);
+                if (Input.GetMouseButton(0))
+                {
+                    if (hit.collider.GetComponent<PlayerManager>().is_Down == true)
+                    {
+                        {
+                            if (hit.collider.GetComponent<PlayerManager>().revive_Time >= 0)
+                            {
+                                hit.collider.GetComponent<PlayerManager>().revive_Time--;
+                                GetComponent<Animator>().SetBool("Fixing", true);
+                            }
+                        }
+                    }
+                }
+            }
         }
+        if (revive_Time <=0)
+        {
+            HealPlayer();
+        }
+    }
+
+    void HealPlayer()
+    {
+        revive_Time = starting_Revive_Time;
+        is_Down = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<KillerWeapon>() !=null)
+        if (other.name == "KillerWeapon")
         {
             if (!is_Hurt)
             {
-                the_Player_Movement.move_Speed /= 2;
                 is_Hurt = true;
             }
-            else
+            else if (is_Hurt && !is_Down)
             {
-                the_Player_Movement.move_Speed = 0;
+                is_Down = true;
             }
         }
         if (other.name == "Health")
@@ -79,6 +109,4 @@ public class PlayerManager : MonoBehaviour
             the_Player_Movement.move_Speed = the_Player_Movement.starting_Movement_Speed;
         }
     }
-
-
 }

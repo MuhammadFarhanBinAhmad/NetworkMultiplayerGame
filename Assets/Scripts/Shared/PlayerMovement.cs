@@ -75,9 +75,15 @@ public class PlayerMovement : MonoBehaviour
                     player_Anim.SetBool("Injured", true);
                     move_Speed = starting_Movement_Speed / 2;
                 }
+                else if (GetComponent<PlayerManager>().is_Down)
+                {
+                    player_Anim.SetBool("Down", true);
+                    move_Speed = starting_Movement_Speed / 4;
+                }
                 else
                 {
                     player_Anim.SetBool("Injured", false);
+                    player_Anim.SetBool("Down", false);
                     move_Speed = starting_Movement_Speed;
                 }
 
