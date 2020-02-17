@@ -21,11 +21,11 @@ public class Generator : InteractableObjects
         }
         if (activated)
         {
-            lamp_Light.intensity = 1.5f;
+            lamp_Light.intensity = 2f;
         }
         else
         {
-            lamp_Light.intensity = Mathf.PingPong(Time.time, 1.5f);
+            lamp_Light.intensity = Mathf.PingPong(Time.time, 2f);
         }
     }
 
