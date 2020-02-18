@@ -13,7 +13,7 @@ public class GateManager : MonoBehaviour
 
     private void Awake()
     {
-        for(int i = 0; i <= 3; i++)
+        for(int i = 0; i <= 5; i++)
         {
             int number = Random.Range(0, generator_Spawning_Point.Count - 1);
             Instantiate(generator, generator_Spawning_Point[number].position, transform.rotation);

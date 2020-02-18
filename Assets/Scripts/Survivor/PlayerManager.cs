@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (hit.collider.GetComponent<InteractableObjects>() != null)
             {
+                print("hit");
                 if (Input.GetMouseButton(0))
                 {
                    if (hit.collider.GetComponent<InteractableObjects>().activated == false)
