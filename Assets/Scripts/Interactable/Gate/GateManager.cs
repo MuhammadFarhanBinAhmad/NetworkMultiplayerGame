@@ -18,7 +18,6 @@ public class GateManager : MonoBehaviour
             int number = Random.Range(0, generator_Spawning_Point.Count - 1);
             Instantiate(generator, generator_Spawning_Point[number].position, transform.rotation);
             generator_Spawning_Point.Remove(generator_Spawning_Point[number]);
-            Destroy(generator_Spawning_Point[number].gameObject);
         }
     }
     void Start()
