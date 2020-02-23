@@ -13,8 +13,8 @@ public class PlayerManager : MonoBehaviour
 
     public InteractingObject interacting_Object;
 
-    [HideInInspector] public bool is_Hurt;
-    [HideInInspector] public bool is_Down;
+     public bool is_Hurt;
+     public bool is_Down;
     [HideInInspector] public bool fixing;
     [HideInInspector] public bool escape;
     // player components
@@ -26,6 +26,8 @@ public class PlayerManager : MonoBehaviour
     public InteractableObjects current_Interactable_Object;
     public PlayerManager other_Player;
     public Door current_Door;
+
+    public GameObject test;
 
     public float starting_Revive_Time;
     public float revive_Time;
@@ -40,6 +42,11 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (test != null)
+        {
+            print(Vector3.Distance(test.transform.position,transform.position));
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -149,6 +156,16 @@ public class PlayerManager : MonoBehaviour
         {
             revive_Time = starting_Revive_Time;
             is_Down = false;
+            is_Hurt = false;
+            the_Anim.SetBool("Injured", false);
+            the_Anim.SetBool("Down", false);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "test")
+        {
+            test = other.gameObject;
         }
     }
 }
