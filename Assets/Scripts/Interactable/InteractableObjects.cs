@@ -11,4 +11,9 @@ public class InteractableObjects : MonoBehaviour
     public bool activating;
 
     public bool activated;
+
+    private void Start()
+    {
+        time_To_Completion = starting_Time_To_Completion;
+    }
 }

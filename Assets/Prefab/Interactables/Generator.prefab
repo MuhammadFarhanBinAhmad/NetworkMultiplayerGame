@@ -2929,8 +2929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adee0ebe8b9425343ada84a75e465a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starting_Time_To_Completion: 0
-  time_To_Completion: 100
+  starting_Time_To_Completion: 100
+  time_To_Completion: 0
   activating: 0
   activated: 0
   lamp_Light: {fileID: 3553434394399628383}

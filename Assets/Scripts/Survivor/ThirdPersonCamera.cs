@@ -7,6 +7,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform target , pivot;
     public Vector3 offset;//store data on how far the camera is from the target
 
+
+
     public bool useOffsetValue;
 
     public float rotate_Speed , Y_limit;
@@ -36,10 +38,11 @@ public class ThirdPersonCamera : MonoBehaviour
             //get x position of the mouse & rotate the target
             //---rotate camera horizontal
             float horizontal = Input.GetAxis("Mouse X") * rotate_Speed;
-            if (!GetComponentInParent<PlayerManager>().fixing)
+            /*if (!GetComponentInParent<PlayerManager>().fixing)
             {
-                target.Rotate(0, horizontal, 0);
-            }
+            }*/
+            target.Rotate(0, horizontal, 0);
+
             //get y pos of mouse & rotate the pivot
             //---move camera vertical
             float vertical = Input.GetAxis("Mouse Y") * rotate_Speed;
