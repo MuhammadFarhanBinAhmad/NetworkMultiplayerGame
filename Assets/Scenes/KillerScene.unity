@@ -2774,6 +2774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361f824c88c392640bf453affd38ed40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magic_Rune_Circle: {fileID: 6331105228532542118, guid: 0361cb8de519e7b4d9b776843922c081,
+    type: 3}
 --- !u!4 &8471817552234043819
 Transform:
   m_ObjectHideFlags: 0

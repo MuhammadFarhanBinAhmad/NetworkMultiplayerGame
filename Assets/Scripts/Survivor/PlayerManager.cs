@@ -13,21 +13,20 @@ public class PlayerManager : MonoBehaviour
 
     public InteractingObject interacting_Object;
 
-     public bool is_Hurt;
-     public bool is_Down;
+    public bool is_Hurt;
+    public bool is_Down;
+    public bool is_Dying;
     [HideInInspector] public bool fixing;
     [HideInInspector] public bool escape;
     // player components
     PlayerMovement the_Player_Movement;
-    Animator the_Anim;
+    public Animator the_Anim;
     public GameObject bar_Holder;
     public Image fill_Bar;
     //Interactable Objects
     public InteractableObjects current_Interactable_Object;
     public PlayerManager other_Player;
     public Door current_Door;
-
-    public GameObject test;
 
     public float starting_Revive_Time;
     public float revive_Time;
@@ -38,16 +37,8 @@ public class PlayerManager : MonoBehaviour
         the_Player_Movement = GetComponent<PlayerMovement>();
         revive_Time = starting_Revive_Time;
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-
-        if (test != null)
-        {
-            print(Vector3.Distance(test.transform.position,transform.position));
-        }
-
         if (Input.GetMouseButton(0))
         {
             Vector3 foward = transform.TransformDirection(Vector3.forward);
@@ -76,7 +67,6 @@ public class PlayerManager : MonoBehaviour
                 }
                 if (hit.collider.gameObject.GetComponent<Door>() != null)
                 {
-                    print("hit");
                     current_Door = hit.collider.GetComponent<Door>();
                     interacting_Object = InteractingObject.OpenDoor;
                 }
@@ -143,13 +133,17 @@ public class PlayerManager : MonoBehaviour
                                 if (other_Player.revive_Time >= 0)
                                 {
                                     other_Player.revive_Time--;
+                                    fill_Bar.fillAmount = other_Player.revive_Time / other_Player.starting_Revive_Time;
                                     the_Anim.SetBool("Fixing", true);
                                 }
                             }
                         }
+                        else
+                        {
+                            the_Anim.SetBool("Fixing", false);
+                        }
                     }
                     break;
-                
             }
         }
         void HealPlayer()
@@ -157,15 +151,11 @@ public class PlayerManager : MonoBehaviour
             revive_Time = starting_Revive_Time;
             is_Down = false;
             is_Hurt = false;
+            is_Dying = false;
+            bar_Holder.SetActive(false);
             the_Anim.SetBool("Injured", false);
             the_Anim.SetBool("Down", false);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "test")
-        {
-            test = other.gameObject;
+            the_Anim.SetBool("Dying", false);
         }
     }
 }

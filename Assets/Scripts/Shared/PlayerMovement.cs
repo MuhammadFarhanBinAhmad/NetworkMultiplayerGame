@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         switch (the_Current_Character)
         {
             case CurrentCharacter.Survivor:
+                
                 if (GetComponent<PlayerManager>().is_Hurt)
                 {
                     player_Anim.SetBool("Injured", true);
@@ -77,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
                     {
                         player_Anim.SetBool("Down", true);
                         move_Speed = starting_Movement_Speed / 5;
+                        if(GetComponent<PlayerManager>().is_Dying)
+                        {
+                            move_Speed = 0;
+                        }
                     }
                 }
                 else
@@ -89,16 +94,16 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
                     player_Anim.SetFloat("Crouch", crouch);
-                    GetComponent<CharacterController>().height = 1;
-                    GetComponent<CharacterController>().center = new Vector3(0, .45f, 0);
+                    theCC.height = 1;
+                    theCC.center = new Vector3(0, .45f, 0);
                     move_Speed = starting_Movement_Speed / 2;
 
                 }
                 else
                 {
                     player_Anim.SetFloat("Crouch", crouch);
-                    GetComponent<CharacterController>().height = 1.7f;
-                    GetComponent<CharacterController>().center = new Vector3(0, .85f, 0);
+                    theCC.height = 1.7f;
+                    theCC.center = new Vector3(0, .85f, 0);
                 }
 
                 break;

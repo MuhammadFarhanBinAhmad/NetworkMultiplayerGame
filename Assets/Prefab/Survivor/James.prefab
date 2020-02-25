@@ -585,12 +585,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5fcdc8d88900447cbacc2451e4e54427, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1662,7 +1662,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!114 &5521772353810378535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,10 +1693,15 @@ MonoBehaviour:
   interacting_Object: 0
   is_Hurt: 0
   is_Down: 0
+  is_Dying: 0
   fixing: 0
   escape: 0
+  the_Anim: {fileID: 0}
   bar_Holder: {fileID: 7915031628420096122}
   fill_Bar: {fileID: 6565565439868820270}
+  current_Interactable_Object: {fileID: 0}
+  other_Player: {fileID: 0}
+  current_Door: {fileID: 0}
   starting_Revive_Time: 100
   revive_Time: 0
 --- !u!95 &4575845947098832376
@@ -2833,7 +2838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7653877888962404240}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 710427988955131880}
