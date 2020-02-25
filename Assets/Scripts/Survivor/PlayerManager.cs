@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class PlayerManager : MonoBehaviour
 {
 
@@ -20,9 +20,11 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public bool escape;
     // player components
     PlayerMovement the_Player_Movement;
+    GateManager the_Gate_Manager;
     public Animator the_Anim;
     public GameObject bar_Holder;
     public Image fill_Bar;
+    public TextMeshProUGUI generator_Left;
     //Interactable Objects
     public InteractableObjects current_Interactable_Object;
     public PlayerManager other_Player;
@@ -35,10 +37,13 @@ public class PlayerManager : MonoBehaviour
     {
         the_Anim = GetComponent<Animator>();
         the_Player_Movement = GetComponent<PlayerMovement>();
+        the_Gate_Manager = FindObjectOfType<GateManager>();
         revive_Time = starting_Revive_Time;
     }
     void FixedUpdate()
     {
+        generator_Left.text = ":"+the_Gate_Manager.generator_Needed.ToString();
+
         if (Input.GetMouseButton(0))
         {
             Vector3 foward = transform.TransformDirection(Vector3.forward);
